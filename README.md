@@ -25,7 +25,7 @@ This project provides a simple setup for running [Traefik](https://traefik.io/) 
 
 1. **Clone this repository:**
    ```zsh
-   git clone https://github.com/jershbytes/traefik.git
+   git clone https://github.com/jershbytes/traefik-config.git
    cd traefik
    ```
 
