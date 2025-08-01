@@ -20,6 +20,7 @@ services:
       - 443:443
     environment:
       - TRAEFIK_DASHBOARD_CREDENTIALS=${TRAEFIK_DASHBOARD_CREDENTIALS}
+      - CF_API_EMAIL=${CF_API_EMAIL}
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cf-token # see https://doc.traefik.io/traefik/https/acme/#providers
     volumes:
       - /etc/localtime:/etc/localtime:ro
