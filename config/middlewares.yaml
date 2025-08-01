@@ -1,5 +1,8 @@
-http:
-  middlewares:    
+  middlewares:
+    dashboard-auth:
+      basicAuth:
+        users:
+          - "${TRAEFIK_DASHBOARD_CREDENTIALS}"
     default-security-headers:
       headers:
         customBrowserXSSValue: 0                            # X-XSS-Protection=1; mode=block
@@ -17,21 +20,3 @@ http:
       redirectScheme:
         scheme: https
         permanent: true
-
-  # routers:
-  #   portainer:
-  #     entryPoints:
-  #       - "https"
-  #     rule: "Host(`portainer-demo.jimsgarage.co.uk`)"
-  #     middlewares:
-  #       - default-security-headers
-  #       - https-redirectscheme
-  #     tls: {}
-  #     service: portainer
-
-  # services:
-  #   portainer:
-  #     loadBalancer:
-  #       servers:
-  #         - url: "https://192.168.200.122:9443"
-  #       passHostHeader: true

@@ -20,7 +20,6 @@ services:
       - 443:443
     environment:
       - TRAEFIK_DASHBOARD_CREDENTIALS=${TRAEFIK_DASHBOARD_CREDENTIALS}
-      - CF_API_EMAIL=${CF_API_EMAIL}
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cf-token # see https://doc.traefik.io/traefik/https/acme/#providers
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -32,18 +31,18 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
-      - "traefik.http.routers.traefik.rule=Host(`pi-traefik.int.jersh.tech`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.int.home.lab`)"
       - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_DASHBOARD_CREDENTIALS}"
       - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
       - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
       - "traefik.http.routers.traefik-secure.entrypoints=https"
-      - "traefik.http.routers.traefik-secure.rule=Host(`pi-traefik.int.jersh.tech`)"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.int.home.lab`)"
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
       - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].main=int.jersh.tech"
-      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.int.jersh.tech"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=int.home.lab"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.int.home.lab"
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
 networks:

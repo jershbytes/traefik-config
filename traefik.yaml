@@ -27,13 +27,14 @@ providers:
     endpoint: "unix:///var/run/docker.sock"
     exposedByDefault: false
   file:
-    directory: /etc/traefik/ # example provided gives A+ rating https://www.ssllabs.com/ssltest/
+    directory: /etc/traefik/config/ # example provided gives A+ rating https://www.ssllabs.com/ssltest/
+    watch: true
 certificatesResolvers:
   cloudflare:
     acme:
       # caServer: https://acme-v02.api.letsencrypt.org/directory # production (default)
-      caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
-      email: ${CF_API_EMAIL} # Cloudflare email (or other provider)
+      # caServer: https://acme-staging-v02.api.letsencrypt.org/directory # staging (testing)
+      email: admin@example.com # Cloudflare email (or other provider)
       storage: /etc/traefik/certs/acme.json
       dnsChallenge:
         provider: cloudflare # change as required
