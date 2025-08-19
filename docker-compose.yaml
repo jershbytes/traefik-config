@@ -13,7 +13,7 @@ services:
     env_file:
       - .env # store other secrets e.g., dashboard password
     networks:
-      - proxy
+      - traefik
       - backend
     ports:
       - 80:80
@@ -46,7 +46,7 @@ services:
       - "traefik.http.routers.traefik-secure.service=api@internal"
 
 networks:
-  proxy:
+  traefik:
     external: true # or comment this line to auto create the network
   backend:
     external: true
